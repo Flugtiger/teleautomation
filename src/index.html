@@ -21,12 +21,14 @@
 		<!-- User javascript files -->
 		<script type="text/javascript" src="js/jqm_layout.js" charset="utf-8"></script>
 		<script type="text/javascript" src="js/fill_levels.js" charset="utf-8"></script>
+		<script type="text/javascript" src="js/trend.js" charset="utf-8"></script>
 		
 		<!-- Init script -->
 		<script>
 			$(document).ready(function() {
 				jqmLayout.init();
 				FillLevels.init();
+				initTrend();
 			})
 		</script>
 	</head>
@@ -62,23 +64,32 @@
 		
 		<div data-role="page" id="page2" data-title="Steuerung">
 			<div role="main" class="ui-content">
-				<ul data-role="listview" data-inset="true">
-					<li class="ui-field-contain">Aktiv:
-						<span id="active_pumping"></span>
-						<button id="stop_pumping" class="ui-btn ui-btn-inline ui-mini">Stop</button>
-					</li>
-					<li class="ui-field-contain">Von
-						<select id="tank_from" data-mini="true" data-inline="true"></select>
-						nach
-						<select id="tank_to" data-mini="true" data-inline="true"></select>
-						<button id="start_pumping" class="ui-btn ui-mini">pumpen</button>
-					</li>
-				</ul>
+				<div class="ui-body ui-body-a ui-corner-all">
+					Von
+					<select id="tank_from" data-mini="true" data-inline="true">
+						<option value="1">Tank 1</option>
+						<option value="2">Tank 2</option>
+						<option value="3">Tank 3</option>
+					</select>
+					nach
+					<select id="tank_to" data-mini="true" data-inline="true">
+						<option value="1">Tank 1</option>
+						<option value="2">Tank 2</option>
+						<option value="3">Tank 3</option>
+					</select>
+					<button id="start_pumping" class="ui-btn ui-mini">pumpen</button>
+				</div>
+				<div class="ui-body ui-body-a ui-corner-all">
+					<button id="stop_pumping" class="ui-btn ui-mini ui-icon-delete ui-btn-icon-left">Pumpen Stoppen</button>
+				</div>
 			</div>
 		</div>		
 		
 		<div data-role="page" id="page3" data-title="Trend">
 			<div role="main" class="ui-content">
+				<div class="ui-body ui-body-a ui-corner-all">
+					<div id="trend"></div>
+				</div>
 			</div>
 		</div>
 	</body>
