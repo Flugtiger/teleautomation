@@ -1,68 +1,84 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
-
+<!DOCTYPE html>
+<html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+		<meta name="viewport" content="width=device-width, initial-scale=0.5"/>
 	
 		<title>Prozessvisualisierung als dynamische Website</title>
+				
+		<!-- Libraries -->
+		<script type="text/javascript" src="lib/jquery-2.2.0.min.js" charset="utf-8"></script>
+		<script type="text/javascript" src="lib/jquery.mobile-1.4.5.min.js" charset="utf-8"></script>
+		<script type="text/javascript" src="lib/jquery.flot.min.js" charset="utf-8"></script>
 		
-		<!-- Add the CSS file to format your HTML elements (colors, positions etc.) -->
-		<link type="text/css" href="css/viz.css" rel="stylesheet" />
-		
-		<!-- Add the CSS file for the tank decorations -->
-		<link type="text/css" href="css/decoration.css" rel="stylesheet" />
-		
-		<script type="text/javascript" src="js/jquery.js" charset="utf-8"></script>
-		<script type="text/javascript" src="js/jquery.flot.js" charset="utf-8"></script>
-		<script type="text/javascript" src="js/trend.js" charset="utf-8"></script>
+		<!-- CSS -->
+		<link rel="stylesheet" type="text/css" href="css/jquery.mobile-1.4.5.min.css"/>
+		<link rel="stylesheet" type="text/css" href="css/styles.css"/>
 		
 		<!-- Add the process simulation -->
 		<script type="text/javascript" src="js/simulation.js" charset="utf-8"></script>
 		
-		<!-- Add the JavaScript file with your dynamic effects -->
-		<script type="text/javascript" src="js/viz.js" charset="utf-8"></script>
+		<!-- User javascript files -->
+		<script type="text/javascript" src="js/jqm_layout.js" charset="utf-8"></script>
+		<script type="text/javascript" src="js/fill_levels.js" charset="utf-8"></script>
+		
+		<!-- Init script -->
+		<script>
+			$(document).ready(function() {
+				jqmLayout.init();
+				FillLevels.init();
+			})
+		</script>
 	</head>
-	
-	<body onload="initViz();">
-		<div id="vizArea">
-			<div id="tanks">
-				<!-- This div is used to visualize the fuel level of tank 1 -->
-				<div class="tank" id="tank1">
-					<div class="bottom"></div>
-				</div>
-				<div class="tank" id="tank2">
-					<div class="bottom"></div>
-				</div>
-				<div class="tank" id="tank3">
-					<div class="bottom"></div>
+	<body>
+		
+		<!-- global Header -->
+		<div id="header" data-role="header" data-fullscreen="true">
+			<a href="#menu_panel" class="ui-btn ui-btn-left ui-btn-inline ui-icon-bars ui-btn-icon-left">Menü</a>
+			<h1 id="page_title"></h1>
+		</div>
+		
+		<div id="menu_panel" data-role="panel" data-display="overlay">
+			<h2>Menü</h2>
+			<ul data-role="listview">
+			</ul>
+		</div>
+		
+		<div data-role="page" id="page1" data-title="Füllstände">
+			<div role="main" class="ui-content">
+				<div class="tank_container ui-body ui-body-a ui-corner-all">
+					<div class="tank">
+						<div class="tank_name">Tank Name</div>
+						<div class="tank_hull">
+							<div class="tank_liquid"></div>
+							<div class="upper sensor"></div>
+							<div class="lower sensor"></div>
+						</div>
+						<div class="tank_liters">100 L</div>
+					</div>
 				</div>
 			</div>
-			<div id="trend"></div>
-			<div id="controls">
-				<button id="start" onclick="startViz();">Start</button>
-				<button id="stop" onclick="stopViz();">Stop</button><br/>			
-				<select id="tankSelector" onchange="setToggleButtonCaption(value);">
-					<option value="tank1">Tank 1</option>
-					<option value="tank2">Tank 2</option>
-					<option value="tank3">Tank 3</option>
-				</select>
-				<button id="toggleButton" onclick="toggleVisibility();">Hide</button><br/>
-				<select id="pumpFrom" onchange="checkSelection()">
-					<option disabled="disabled" selected="selected">From:</option>
-					<option value="1">Tank 1</option>
-					<option value="2">Tank 2</option>
-					<option value="3">Tank 3</option>
-				</select>
-				<select id="pumpTo" onchange="checkSelection()">
-					<option disabled="disabled" selected="selected">To:</option>
-					<option value="1">Tank 1</option>
-					<option value="2">Tank 2</option>
-					<option value="3">Tank 3</option>
-				</select>
-				<button id="pumpButton" disabled="disabled" onclick="pumpOver()">Pump Over</button>
-				<button onclick="stopPumping()">Stop Pumping</button><br/>
+		</div>
+		
+		<div data-role="page" id="page2" data-title="Steuerung">
+			<div role="main" class="ui-content">
+				<ul data-role="listview" data-inset="true">
+					<li class="ui-field-contain">Aktiv:
+						<span id="active_pumping"></span>
+						<button id="stop_pumping" class="ui-btn ui-btn-inline ui-mini">Stop</button>
+					</li>
+					<li class="ui-field-contain">Von
+						<select id="tank_from" data-mini="true" data-inline="true"></select>
+						nach
+						<select id="tank_to" data-mini="true" data-inline="true"></select>
+						<button id="start_pumping" class="ui-btn ui-mini">pumpen</button>
+					</li>
+				</ul>
+			</div>
+		</div>		
+		
+		<div data-role="page" id="page3" data-title="Trend">
+			<div role="main" class="ui-content">
 			</div>
 		</div>
 	</body>

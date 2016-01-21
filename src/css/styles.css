@@ -1,0 +1,98 @@
+/***** general layout *****/
+
+/* elements */
+h2 {
+	margin-top: 0;
+}
+
+/* page */
+div.ui-page {
+	min-height: 0 !important;
+	font-size: 70% !important;
+}
+
+div.ui-content {
+	padding: 0.5em;
+}
+
+#page2 ul {
+	margin: 0;
+}
+
+/* menu */
+#menu_panel {
+	width: 11em;
+}
+
+#menu_panel .selected {
+    background-color:       #22aadd !important;
+    border-color:           #22aadd !important;
+    color:                  #fff !important;
+    text-shadow: 0 0 #0088bb !important;
+}
+
+/* Tanks */
+div.tank_container {
+	display: flex;
+	justify-content: space-around;
+	align-items: stretch;
+}
+
+div.tank {
+	text-align: center;
+}
+
+div.tank_name {
+	font-weight: bold;
+	font-size: 120%;
+	margin-bottom: 0.5rem;
+}
+
+div.tank_hull {
+	height: 100px;
+	width: 50px;
+	border: 1px solid grey;
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-end;
+	border-radius: 1em;
+}
+
+div.tank_liquid {
+	background-color: lightblue;
+	height: 50%;
+	border-radius: 0 0 1em 1em;
+}
+
+div.tank_hull div.sensor {
+	width: 10px;
+	height: 10px;
+	border-radius: 5px;
+	border: 1px solid grey;
+	position: absolute;
+	float: left;
+	left: 45px;
+	background-color: white;
+}
+
+div.tank_hull div.sensor.active {
+	background-color: lightblue;
+}
+
+div.tank_hull div.upper.sensor {
+	bottom: 80px;
+}
+
+div.tank_hull div.lower.sensor {
+	bottom: 10px;
+}
+
+div.tank_liters {
+	width: 50px;
+	margin: 0.5rem 0;
+	border: 1px solid black;
+	background-color: rgb(100,100,100);
+	color: white;
+	font: monospace;
+}
