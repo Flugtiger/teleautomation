@@ -22,6 +22,7 @@
 		<script type="text/javascript" src="js/jqm_layout.js" charset="utf-8"></script>
 		<script type="text/javascript" src="js/fill_levels.js" charset="utf-8"></script>
 		<script type="text/javascript" src="js/trend.js" charset="utf-8"></script>
+		<script type="text/javascript" src="js/controller.js" charset="utf-8"></script>
 		
 		<!-- Init script -->
 		<script>
@@ -29,6 +30,16 @@
 				jqmLayout.init();
 				FillLevels.init();
 				initTrend();
+				
+				var proc = new process();
+				proc.setCallback(function (data) {
+					FillLevels.update(data);
+					updateTrend(data);
+				})
+				proc.init();
+				proc.startSimulation();
+				
+				Controller.init(proc);
 			})
 		</script>
 	</head>

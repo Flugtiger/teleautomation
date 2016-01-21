@@ -100,7 +100,7 @@ div.tank_hull div.sensor {
 	background-color: white;
 }
 
-div.tank_hull div.sensor.active {
+div.tank_hull div.sensor.warn {
 	background-color: lightblue;
 }
 
